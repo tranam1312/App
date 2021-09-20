@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/App/app/src/main/res/layout/activity_login.xml" value="0.1583011583011583" />
+        <entry key="..\:/App/app/src/main/res/layout/activity_main.xml" value="0.1683760683760684" />
+        <entry key="..\:/App/app/src/main/res/layout/activity_splash.xml" value="0.12051282051282051" />
+        <entry key="..\:/App/app/src/main/res/layout/detail_fragment.xml" value="0.12393162393162394" />
+        <entry key="..\:/App/app/src/main/res/layout/home_fragment.xml" value="0.1683760683760684" />
+        <entry key="..\:/App/app/src/main/res/layout/item.xml" value="0.23974358974358975" />
+        <entry key="..\:/App/app/src/main/res/layout/item_repos_load_state_footer.xml" value="0.2726449275362319" />
+        <entry key="..\:/App/app/src/main/res/layout/itemreposloadstatefooter.xml" value="0.30085470085470084" />
+        <entry key="..\:/App/app/src/main/res/layout/message_fragment.xml" value="0.12863247863247862" />
+        <entry key="..\:/App/app/src/main/res/layout/notificationment_fragment.xml" value="0.12051282051282051" />
+        <entry key="..\:/App/app/src/main/res/layout/post_fragment.xml" value="0.12051282051282051" />
+        <entry key="..\:/App/app/src/main/res/layout/setting_fragment.xml" value="0.12051282051282051" />
+        <entry key="..\:/App/app/src/main/res/menu/menu_main.xml" value="0.1683760683760684" />
+        <entry key="..\:/App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1188034188034188" />
+        <entry key="..\:/App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1188034188034188" />
+        <entry key="..\:/Users/Tran-Nam/AndroidStudioProjects/App/app/src/main/res/drawable/ic_lock.xml" value="0.18162393162393162" />
+        <entry key="..\:/Users/Tran-Nam/AndroidStudioProjects/App/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Tran-Nam/AndroidStudioProjects/App/app/src/main/res/layout/activity_main.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Tran-Nam/AndroidStudioProjects/App/app/src/main/res/layout/home_fragment.xml" value="0.1683760683760684" />
+        <entry key="..\:/Users/Tran-Nam/AndroidStudioProjects/App/app/src/main/res/menu/menu_main.xml" value="0.1683760683760684" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

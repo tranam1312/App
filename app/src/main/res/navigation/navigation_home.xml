@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/naviagtion_home"
+    app:startDestination="@+id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.app.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.example.app.messager.MessageFragment"
+        android:label="Message"
+        tools:layout="@layout/message_fragment" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.app.post.PostFragment"
+        android:label="Post"
+        tools:layout="@layout/post_fragment" />
+    <fragment
+        android:id="@+id/notificationment"
+        android:name="com.example.app.notification.Notificationment"
+        android:label="Notification"
+        tools:layout="@layout/notificationment_fragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.app.setting.SettingFragment"
+        android:label="Setting"
+        tools:layout="@layout/setting_fragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.app.home.detailFragment.DetailFragment"
+        android:label="DetailFragment" />
+</navigation>
