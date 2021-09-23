@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.paging.LoadState
@@ -33,7 +34,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var dataClassAdpater: DataClassAdpater
-    private lateinit var viewModel: HomeViewModel
+    private  val viewModel: HomeViewModel by lazy {
+        ViewModelProvider(this)[HomeViewModel::class.java]
+    }
     private lateinit var binding: HomeFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,18 +48,13 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         recyclerView = binding.recyclView
         dataClassAdpater = DataClassAdpater(UserComparator, onClickItem)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = dataClassAdpater
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.results.collectLatest {
-                dataClassAdpater.submitData(it)
-            }
-
-        }
+        viewModel.liveData.observe(viewLifecycleOwner, Observer {
+            dataClassAdpater.submitData(lifecycle,it)
+        })
 
         binding.recyclView.adapter = dataClassAdpater.withLoadStateHeaderAndFooter(
             header = LoadSateAdapter { dataClassAdpater.retry() },
@@ -81,8 +79,6 @@ class HomeFragment : Fragment() {
         requireView().findNavController().navigate(R.id.detailFragment, bundle)
         }
     }
-
-
 
 
 

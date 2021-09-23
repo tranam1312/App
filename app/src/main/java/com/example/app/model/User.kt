@@ -10,8 +10,8 @@ import com.example.app.home.HomeFragment
 import java.io.Serializable
 
 
-data class User(var info: Info, var results: List<Results>)
-data class Info(var count : Int?, var pages: Int?,var  next : String?, var pev : String?)
+data class User(val info: Info, val results: List<Results>)
+data class Info(val count : Int?, val pages: Int?,val  next : String?, val pev : String?)
 @Keep
-data class Results(var id : Int?, var name: String ?, var species :String?, var type: String?, var gender: String, var image: String ): Serializable{
+data class Results(val id : Int?, val name: String ?, val species :String?, val type: String?, val gender: String, val image: String ): Serializable{
 }

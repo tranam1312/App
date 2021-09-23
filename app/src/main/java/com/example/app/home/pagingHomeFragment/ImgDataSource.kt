@@ -1,18 +1,16 @@
 package com.example.app.home.pagingHomeFragment
 
-import android.content.ClipData
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.paging.ItemKeyedDataSource
-import androidx.paging.PagingSource
-import androidx.paging.PagingState
-import com.example.app.Api.SeverApi
-import com.example.app.Api.SeverBuild
-import com.example.app.model.Results
-import com.example.app.model.User
-import java.lang.Exception
 
-class ImgDataSource(private val severApi: SeverApi): PagingSource<Int, Results>() {
+import androidx.paging.PagingState
+import androidx.paging.rxjava2.RxPagingSource
+import com.example.app.Api.SeverApi
+import com.example.app.model.Results
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.Schedulers.io
+
+
+class ImgDataSource(private val severApi: SeverApi): RxPagingSource<Int, Results>() {
     override fun getRefreshKey(state: PagingState<Int, Results>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
@@ -24,18 +22,13 @@ class ImgDataSource(private val severApi: SeverApi): PagingSource<Int, Results>(
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Results> {
-        try {
-            val nextPage = params.key ?: 1
-            val results = severApi.getAll(nextPage)
-            return LoadResult.Page(
-                results.results,
-                if (nextPage == 1) null else nextPage - 1,
-                nextPage + 1
-            )
-        }catch (e: Exception){
-            return LoadResult.Error(e)
-        }
+
+    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Results>> {
+        val nextPage = params.key ?: 1
+        return  severApi.getAll(nextPage).subscribeOn(Schedulers.io())
+            .map{it -> LoadResult.Page(it.results,if (nextPage == 1) null else nextPage - 1,
+                nextPage + 1) as LoadResult<Int,Results> }
+            .onErrorReturn{LoadResult.Error(it)}
     }
 }
 
