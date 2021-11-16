@@ -15,6 +15,6 @@ import retrofit2.http.Query
 
 interface SeverApi {
     @GET("character")
-    fun getAll(@Query ("page") page : Int) : Single<User>
+  suspend  fun getAll(@Query ("page") page : Int) : User
 
     }

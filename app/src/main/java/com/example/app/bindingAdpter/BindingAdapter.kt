@@ -1,6 +1,5 @@
 package com.example.app.bindingAdpter
 
-import android.widget.ImageView
 import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide

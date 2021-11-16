@@ -10,7 +10,6 @@ class SeverBuild {
         val gson = GsonBuilder().setLenient().create()
         fun instance(): SeverApi {
             return Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl("https://rickandmortyapi.com/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()

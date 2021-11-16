@@ -20,10 +20,7 @@ class Repositrory  {
 
     private val severApi = SeverBuild.instance()
     private val imgDataSource  = ImgDataSource(severApi)
-    fun getData(): Observable<PagingData<Results>> {
-         return  Pager(config =  PagingConfig(pageSize = 20),
-             pagingSourceFactory = { imgDataSource}).observable
-    }
+
 
 
 }

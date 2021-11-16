@@ -49,12 +49,14 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         recyclerView = binding.recyclView
-        dataClassAdpater = DataClassAdpater(UserComparator, onClickItem)
+        dataClassAdpater = DataClassAdpater( onClickItem)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = dataClassAdpater
-        viewModel.liveData.observe(viewLifecycleOwner, Observer {
-            dataClassAdpater.submitData(lifecycle,it)
-        })
+        lifecycleScope.launch {
+        viewModel.flow.collectLatest {
+            dataClassAdpater.submitData(it)
+        }
+        }
 
         binding.recyclView.adapter = dataClassAdpater.withLoadStateHeaderAndFooter(
             header = LoadSateAdapter { dataClassAdpater.retry() },

@@ -13,7 +13,6 @@ class PostFragment : Fragment() {
     companion object {
         fun newInstance() = PostFragment()
     }
-
     private lateinit var viewModel: PostViewModel
 
     override fun onCreateView(

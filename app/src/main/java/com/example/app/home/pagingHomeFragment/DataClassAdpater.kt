@@ -5,43 +5,36 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app.R
 import com.example.app.databinding.ItemBinding
 import com.example.app.model.Results
+import com.example.appchat.base.module.BasePagingAdapter
+import com.example.appchat.base.module.DiffCallback
 
-class DataClassAdpater(diffCallback: DiffUtil.ItemCallback<Results>, private var onClickItem :(Results)->Unit) :
-    PagingDataAdapter<Results, DataClassAdpater.ViewHolder>(diffCallback) {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val binding = ItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position).let{ redditPost ->
-            if (redditPost != null) {
-                holder.bind(redditPost)
-            }
-        }
-    }
-   inner class ViewHolder (private val itemBinding: ItemBinding): RecyclerView.ViewHolder(itemBinding.root){
-        fun bind(results: Results){
-            itemBinding.result = results
-            itemBinding.root.setOnClickListener {
-                onClickItem(results)
-            }
-        }
-    }
-    }
+class DataClassAdpater(private var onClickItem :(Results)->Unit) :
+ BasePagingAdapter<Results,ItemBinding>(UserComparator)    {
 
 
-object UserComparator : DiffUtil.ItemCallback<Results>() {
-    override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
+    override fun getLayoutViewBinding(viewType: Int): Int = R.layout.item
+
+    override fun bindView(binding: ItemBinding, item: Results, position: Int) {
+        super.bindView(binding, item, position)
+                binding.result = item
+                binding.root.setOnClickListener {
+                    onClickItem(item)
+                }
+    }
+
+}
+
+
+object UserComparator : DiffCallback<Results>() {
+
+    override fun sameItemComposition(oldItem: Results, newItem: Results): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Results, newItem: Results): Boolean {
+    override fun sameItemContent(oldItem: Results, newItem: Results): Boolean {
         return oldItem == newItem
     }
 }
